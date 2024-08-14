@@ -194,135 +194,142 @@ export default DropdownExample;
 }`;
 
   return (
-    <div className="w-full h-full flex flex-col gap-3 items-start justify-start">
-      <div className="w-full font-[poppins] text-3xl text-white m-10">
-        User Select DropDown
-      </div>
+    <div className="w-full h-full flex flex-col gap-2 items-start justify-start">
+      <div className="w-full mb-[10px] bg-white h-[50px] backdrop-blur-md bg-opacity-20">
 
-      <div className="w-full h-auto flex flex-row justify-start">
-        <div className="">
-          <div className="relative mx-[30px] bg-transparent h-[40px] w-[800px] flex flex-row items-center justify-between px-[10px] py-[10px] rounded-[10px]">
-            <div className="flex space-x-4">
-              <button
-                onClick={() => setSelectedCode('jsx')}
-                className={`px-4 py-2 rounded-md  ${selectedCode === 'jsx' ? 'bg-white text-black' : 'bg-transparent text-white border-2 border-white rounded-md'}`}
-              >
-                JSX
-              </button>
-              <button
-                onClick={() => setSelectedCode('css')}
-                className={`px-4 py-2 rounded-md ${selectedCode === 'css' ? 'bg-white text-black' : 'bg-transparent text-white border-2 border-white rounded-md'}`}
-              >
-                CSS
-              </button>
-            </div>
-            <div
-              className="sticky top-4 right-3 text-white cursor-pointer"
-              onClick={copyToClipboard}
-            >
-              Copy
+      </div>
+      <div className="flex flex-row gap-3 justify-evenly w-full">
+        <div className=" flex flex-col gap-2 items-start justify-start">
+          <div className="w-full font-[poppins] text-3xl text-white mt-[5%] ml-[5%]">
+            User Select DropDown
+          </div>
+
+          <div className="w-full h-auto flex flex-row justify-start scale-[.9]">
+            <div className="">
+              <div className="relative mx-[30px] bg-transparent h-[40px] w-[800px] flex flex-row items-center justify-between px-[10px] py-[10px] rounded-[10px]">
+                <div className="flex space-x-4">
+                  <button
+                    onClick={() => setSelectedCode('jsx')}
+                    className={`px-4 py-2 rounded-md  ${selectedCode === 'jsx' ? 'bg-white text-black' : 'bg-transparent text-white border-2 border-white rounded-md'}`}
+                  >
+                    JSX
+                  </button>
+                  <button
+                    onClick={() => setSelectedCode('css')}
+                    className={`px-4 py-2 rounded-md ${selectedCode === 'css' ? 'bg-white text-black' : 'bg-transparent text-white border-2 border-white rounded-md'}`}
+                  >
+                    CSS
+                  </button>
+                </div>
+                <div
+                  className="sticky top-4 right-3 text-white cursor-pointer"
+                  onClick={copyToClipboard}
+                >
+                  Copy
+                </div>
+              </div>
+              <h1 className="text-white mt-4 ml-[40px]">{selectedCode.toUpperCase()}</h1>
+              <div className="scrollable-container  rounded-lg bg-stone-700 px-[10px]">
+                <SyntaxHighlighter language="javascript" style={tomorrow}>
+                  {selectedCode === 'jsx' ? codeString : cssString}
+                </SyntaxHighlighter>
+              </div>
             </div>
           </div>
-          <h1 className="text-white mt-4 ml-[40px]">{selectedCode.toUpperCase()}</h1>
-          <div className="scrollable-container  rounded-lg bg-stone-700 px-[10px]">
-            <SyntaxHighlighter language="javascript" style={tomorrow}>
-              {selectedCode === 'jsx' ? codeString : cssString}
-            </SyntaxHighlighter>
-          </div>
+
         </div>
 
         <div className="h-screen flex flex-row gap-[120px] p-4 items-start justify-start ">
-
-          <div className=" bg-white px-[30px] py-[30px] rounded-md backdrop-blur-md">
-            <input
-              type="color"
-              value={baseColor}
-              onChange={handleBaseColorChange}
-              className="mb-4 bg-transparent scale-[120%] rounded-md"
-            />
-            <div className="mt-4 text-lg font-bold">{selectedColor}</div>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {colorVariations.map((color, index) => (
-                <button
-                  key={index}
-                  style={{ backgroundColor: color }}
-                  onClick={() => handleColorSelect(color)}
-                  className="w-8 h-8 rounded-full cursor-pointer border-none"
-                ></button>
-              ))}
+          <div className="w-full flex h-[500px] items-start gap-[130px] justify-between mt-[5%] flex-row">
+            <div className=" bg-white px-[30px] py-[30px] flex h-full w-full flex-col justify-between gap-5 items-start rounded-md backdrop-blur-md">
+              <h1 className='text-black'>Color Picker</h1>
+              <input
+                type="color"
+                value={baseColor}
+                onChange={handleBaseColorChange}
+                className="mb-4 bg-transparent w-[200px] h-[100px] rounded-md"
+              />
+              <div className="mt-4 text-lg font-bold">{selectedColor}</div>
+              <div className="flex flex-wrap gap-2 mt-4 ">
+                {colorVariations.map((color, index) => (
+                  <button
+                    key={index}
+                    style={{ backgroundColor: color }}
+                    onClick={() => handleColorSelect(color)}
+                    className="w-8 h-8 rounded-full cursor-pointer border-none"
+                  ></button>
+                ))}
+              </div>
             </div>
-          </div>
-
-
-
-
-
-          <div className="w-auto h-[500px] gap-[30px] border-2 border-white rounded-md px-[30px] flex flex-col items-center justify-start backdrop-blur-md py-[40px] relative ">
-            <h1 className='text-[80px]'>Preview</h1>
-            <div className="relative inline-block text-left ">
-              <button
-                onClick={toggleDropdown}
-                style={{ backgroundColor: selectedColor }}
-                className="inline-flex justify-center w-[200px] px-4 py-2 text-sm font-medium text-white rounded-md hover:bg-slate-700 focus:outline-none transition duration-200 ease-in-out"
-              >
-                Options
-              </button>
-              <div className={`dropdown-menu border ${isOpen ? 'open' : ''}`}>
-                <div className="dropdown-items">
-                  {options.map((option, index) => (
+            <div className="w-[100%] h-[500px]  gap-[30px] border-2 border-white rounded-md px-[30px] flex flex-col items-center justify-start backdrop-blur-md py-[40px] relative ">
+              <h1 className='text-[30px] w-full justify-between flex'> ▶
+                <span className='text-white'>Preview</span></h1>
+              <div className="relative inline-block text-left ">
+                <button
+                  onClick={toggleDropdown}
+                  style={{ backgroundColor: selectedColor }}
+                  className="inline-flex justify-center w-[200px] px-4 py-2 text-sm font-medium text-white rounded-md hover:bg-slate-700 focus:outline-none transition duration-200 ease-in-out"
+                >
+                  Options
+                </button>
+                <div className={`dropdown-menu border backdrop-blur-md ${isOpen ? 'open' : ''}`}>
+                  <div className="dropdown-items">
+                    {options.map((option, index) => (
+                      <a
+                        key={index}
+                        href="#"
+                        onClick={() => handleOptionSelect(option)}
+                        className="dropdown-item"
+                      >
+                        {option}
+                      </a>
+                    ))}
                     <a
-                      key={index}
                       href="#"
-                      onClick={() => handleOptionSelect(option)}
-                      className="dropdown-item"
+                      onClick={addOption}
+                      className="dropdown-item text-green-500"
                     >
-                      {option}
+                      + Add Option
                     </a>
-                  ))}
-                  <a
-                    href="#"
-                    onClick={addOption}
-                    className="dropdown-item text-green-500"
-                  >
-                    + Add Option
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
-
-
-
           </div>
         </div>
-      </div>
 
-      {showDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white p-4 rounded-lg shadow-lg">
-            <h2 className="text-black font-bold text-lg mb-2">Enter Value</h2>
-            <input
-              type="text"
-              value={popupValue}
-              onChange={handleInputChange}
-              className="border border-gray-400 p-2 mb-4 w-full rounded-md"
-            />
-            <div className="flex justify-end">
-              <button
-                onClick={() => setShowDialog(false)}
-                className="mr-4 bg-red-500 text-white px-4 py-2 rounded-md"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSave}
-                className="bg-green-500 text-white px-4 py-2 rounded-md"
-              >
-                Save
-              </button>
+
+        {showDialog && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <h2 className="text-black font-bold text-lg mb-2">Enter Value</h2>
+              <input
+                type="text"
+                value={popupValue}
+                onChange={handleInputChange}
+                className="border border-gray-400 p-2 mb-4 w-full rounded-md"
+              />
+              <div className="flex justify-end">
+                <button
+                  onClick={() => setShowDialog(false)}
+                  className="mr-4 bg-red-500 text-white px-4 py-2 rounded-md"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleSave}
+                  className="bg-green-500 text-white px-4 py-2 rounded-md"
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
+      <div className="text-white w-full h-[20px] bg-white">
+        hello
+      </div>
       <ToastContainer />
     </div>
   );
