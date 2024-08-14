@@ -1,2 +1,8 @@
+# Ignore the .vercel directory
 .vercel
-node_modules
+
+# Ignore node_modules
+node_modules/
+
+# Ignore everything under src/assets
+src/assets/
