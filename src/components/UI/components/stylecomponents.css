@@ -1,0 +1,97 @@
+
+ .scrollable-container {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 30px; /* Space above the scrollbar */
+    overflow-y: scroll;
+    height: 600px;
+    width: 800px;
+  }
+
+/* Simple Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 255, 255);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(131, 131, 131, 0.9);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dropdown.css */
+
+.dropdown-menu {
+  position: absolute;
+  margin-top: 10px;
+  left: 0;
+  top: 100%;
+  width: 200px; /* Adjust width as needed */
+  height: 0; /* Initial height */
+  overflow: hidden;
+  background-color: transparent;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: height 0.3s ease, opacity 0.3s ease;
+  overflow-y: scroll;
+}
+
+.dropdown-menu.open {
+  height: 180px; /* Expanded height */
+  opacity: 1;
+  
+}
+
+.dropdown-items {
+  transform: translateY(-20px); /* Initial position of items */
+  transition: transform 0.3s ease;
+  
+}
+
+.dropdown-menu.open .dropdown-items {
+  transform: translateY(30px); /* Final position of items */
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #505050;
+}

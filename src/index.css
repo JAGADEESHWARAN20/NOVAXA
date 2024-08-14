@@ -1,0 +1,21 @@
+/* src/styles.css or appropriate CSS file */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .cursorHome {
+        @apply w-20 h-20 bg-black text-white flex items-center justify-center;
+        border-radius: 50%;
+        position: absolute;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: color 0.3s;
+        color: rgb(0, 0, 0);
+        
+    }
+
+    .cursorHome.active {
+        color: red; /* Change this to the desired color */
+    }
+}
